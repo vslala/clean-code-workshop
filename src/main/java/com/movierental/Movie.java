@@ -6,19 +6,31 @@ public class Movie {
   public static final int NEW_RELEASE = 1;
 
   private String title;
-  private int priceCode;
+  private Price price;
 
-  public Movie(String title, int priceCode) {
+  public Movie(String title, int price) {
     this.title = title;
-    this.priceCode = priceCode;
+    setPrice(price);
   }
 
-  public int getPriceCode() {
-    return priceCode;
+  public Price getPrice() {
+    return price;
   }
 
-  public void setPriceCode(int arg) {
-    priceCode = arg;
+  public void setPrice(int priceCode) {
+    switch (priceCode) {
+      case Movie.REGULAR:
+        price = new RegularPrice();
+        break;
+      case Movie.CHILDRENS:
+        price = new ChildrenPrice();
+        break;
+      case Movie.NEW_RELEASE:
+        price = new NewReleasePrice();
+        break;
+      default:
+        throw new IllegalArgumentException("Price code is not valid.");
+    }
   }
 
   public String getTitle() {

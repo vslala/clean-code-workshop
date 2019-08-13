@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -22,7 +21,7 @@ public class CustomerTest {
         if (! Objects.isNull(movies)) {
             for (Movie movie : movies) {
                 double amount = 0;
-                switch (movie.getPriceCode()) {
+                switch (movie.getPrice().getPriceCode()) {
                     case Movie.REGULAR:
                         amount += 2;
                         if (daysRented > 2) {
@@ -42,7 +41,7 @@ public class CustomerTest {
 
                 if (! Objects.isNull(movie)) {
                     frequentRenterPoints ++;
-                    if ((movie.getPriceCode() == Movie.NEW_RELEASE)
+                    if ((movie.getPrice().getPriceCode() == Movie.NEW_RELEASE)
                             &&
                             daysRented > 1) frequentRenterPoints++;
                 }
